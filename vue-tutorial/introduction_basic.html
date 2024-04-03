@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Practice</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 1 : 宣言的レンダリング -->
+    <h1>宣言的レンダリング</h1>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <br>
+    <br>
+
+    <!-- 2 : v-bindの操作 -->
+    <h1>v-bindの操作</h1>
+    <div id="app2">
+        <span v-bind:title="message">
+            このメッセージにカーソルを合わせると、その日の時刻が表示されます。
+        </span>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- 3 : 条件分岐 -->
+    <h1>条件分岐</h1>
+    <div id="app3">
+        <span v-if="seen">Now you can see👁️</span>
+        <p>===> 条件分岐おまけ（press button then, above became unvisible!!）<===</p>
+        <button v-on:click="switchToggleSeen">🔘</button>
+    </div>
+
+    <br>
+    <br>
+
+
+    <!-- 4: ループ -->
+    <h1>ループ</h1>
+    <div id="app4">
+        <ol>
+            <li v-for="item in contents">
+                {{item.text}}
+            </li>
+        </ol>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- 5　：ユーザー入力の処理 -->
+    <h1>ユーザー入力の処理</h1>
+    <div id="app5">
+        <p>{{message}}</p>
+        <button v-on:click="reverseToggleSwitch">🔘</button>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- 6 : インプット項目の処理 -->
+    <h1>インプット項目の処理</h1>
+    <div id="app6">
+        <p>{{message}}</p>
+        <input v-model="message">
+    </div>
+
+    <br>
+    <br>
+
+
+
+
+</body>
+
+<script>
+    // 1 : 宣言的レンダリング
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello"
+        }
+    })
+
+    // 2 : v-bindの操作
+    var app2 = new Vue({
+        el: "#app2",
+        data: {
+            message: new Date().toLocaleString()
+        }
+    })
+
+    // 3 : 条件分岐
+    var app3 = new Vue({
+        el: "#app3",
+        data: {
+            seen: true
+        },
+        // 3 : 条件分岐おまけ（ボタン押すと、文字消える）
+        methods: {
+            switchToggleSeen: function () {
+                this.seen = !this.seen
+            }
+        }
+
+    })
+
+    // 4 : ループ
+    var app4 = new Vue({
+        el: "#app4",
+        data: {
+            contents: [
+                {text: "品川周蔵"},
+                {text: "23歳"},
+                {text: "男性"}
+            ]
+        }
+    })
+
+    // 5 : ユーザー入力の処理
+    var app5 = new Vue({
+        el: "#app5",
+        data:{
+            message: "ボタンを押すと文字が逆に表示されます。"
+        },
+        methods:{
+            reverseToggleSwitch: function () {
+                this.message = this.message.split("").reverse().join("")
+            }
+        }
+    })
+
+    //6 : ユーザ入力の処理
+    var app6 = new Vue({
+        el: "#app6",
+        data: {
+            message : "フォームに文字を入力してみてください。"
+        }
+    })
+
+    
+    
+</script>
+
+</html>

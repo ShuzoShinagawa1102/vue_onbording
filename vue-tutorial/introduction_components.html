@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>introduction_components</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 7 : コンポーネント（basic） -->
+    <h1>単純なコンポーネント記法</h1>
+    <div id="app">
+        <ol>
+            <comp_yasai></comp_yasai>
+        </ol>
+    </div>
+
+    <!-- 8 : propsを使ったコンポーネント（多分これは、一つの要素に複数要素を内包するとの連携なのか -->
+    <!-- propsはv-bindで指定 -->
+    <h1>propsを使ったコンポーネント記法</h1>
+    <div id="app2">
+        <ol>
+            <comp_yasaiRanking
+                v-for = "item in yasaiRanking"
+                v-bind:yasai = "item"
+                v-bind:key = "item.id"
+            ></comp_yasaiRanking>
+        </ol>
+    </div>
+    
+</body>
+<script>
+    // 書き方：Vue.component("テンプレート名", {
+    //     template: "ここにhtmlの要素（例：<li>this is tomato🍅🍅</>"
+    // })
+    // var app = new Vue({...})
+
+    // <!-- 7 : コンポーネント（basic） -->
+    Vue.component("comp_yasai", {
+        template: "<li>人気No1野菜🍅</li>"
+    })
+    var app = new Vue({
+        el: "#app"
+    })
+
+    // <!-- 8 : propsを使ったコンポーネント（多分これは、一つの要素に複数要素を内包するとの連携なのか -->
+    Vue.component("comp_yasaiRanking", {
+        props: ["yasai"],
+        template: "<li>{{ yasai.text }}</li>"
+    })
+    var app2 = new Vue({
+        el: "#app2",
+        data: {
+            yasaiRanking: [
+                { id: 0, text: "Tomato🍅"},
+                { id: 1, text: "Pineapple🍍"},
+                { id: 2, text: "Banana🍌"}
+            ]
+        }
+    })
+
+</script>
+</html>

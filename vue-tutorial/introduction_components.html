@@ -11,7 +11,7 @@
     <h1>単純なコンポーネント記法</h1>
     <div id="app">
         <ol>
-            <comp_yasai></comp_yasai>
+            <comp-yasai></comp-yasai>
         </ol>
     </div>
 
@@ -20,11 +20,11 @@
     <h1>propsを使ったコンポーネント記法</h1>
     <div id="app2">
         <ol>
-            <comp_yasaiRanking
+            <comp-yasai-ranking
                 v-for = "item in yasaiRanking"
                 v-bind:yasai = "item"
                 v-bind:key = "item.id"
-            ></comp_yasaiRanking>
+            ></comp-yasai-ranking>
         </ol>
     </div>
     
@@ -36,7 +36,7 @@
     // var app = new Vue({...})
 
     // <!-- 7 : コンポーネント（basic） -->
-    Vue.component("comp_yasai", {
+    Vue.component("comp-yasai", {
         template: "<li>人気No1野菜🍅</li>"
     })
     var app = new Vue({
@@ -44,7 +44,7 @@
     })
 
     // <!-- 8 : propsを使ったコンポーネント（多分これは、一つの要素に複数要素を内包するとの連携なのか -->
-    Vue.component("comp_yasaiRanking", {
+    Vue.component("comp-yasai-ranking", {
         props: ["yasai"],
         template: "<li>{{ yasai.text }}</li>"
     })
@@ -52,9 +52,9 @@
         el: "#app2",
         data: {
             yasaiRanking: [
-                { id: 0, text: "Tomato🍅"},
-                { id: 1, text: "Pineapple🍍"},
-                { id: 2, text: "Banana🍌"}
+                { id: 0, text: "Tomato🍅" },
+                { id: 1, text: "Pineapple🍍" },
+                { id: 2, text: "Banana🍌" }
             ]
         }
     })

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 今回はpracticeなので、importmapを使用し、簡易的にブラウザでデバッグできるようにする -->
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+      </script>
+    <title>Practice</title>
+</head
+
+>
+<body>
+    <div id="app">
+        <button @click="count++">{{ count }}</button>
+    </div>
+</body>
+
+
+
+<script type="module">
+    // createAppはインスタンス作成の入り口
+    import { createApp } from "vue"
+    // インスタンスの作成
+    const app = createApp({
+        data() {
+            return {
+                count: 0
+            }
+        }
+    })
+    app.mount("#app")  
+
+    // 実際に、idを指定しmount。options api記法では、これは"el"で指定されてた
+    app.mount("#app")    
+</script>
+
+
+
+
+</html>
